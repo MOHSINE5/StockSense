@@ -8,9 +8,9 @@ services:
       - "8000:8000"
     volumes:
       - ../backend:/app
-      - ../stockfish:/stockfish
+    # Install or bind-mount Stockfish in the container; set STOCKFISH_PATH to that binary (host env or docker/.env).
     environment:
-      - STOCKFISH_PATH=/stockfish/stockfish
+      - STOCKFISH_PATH=${STOCKFISH_PATH}
 
   frontend:
     build:

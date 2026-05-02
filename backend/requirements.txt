@@ -2,3 +2,4 @@ fastapi
 uvicorn[standard]
 python-chess
 pydantic
+python-dotenv

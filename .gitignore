@@ -1,7 +1,7 @@
-# 🔥 Ignore Stockfish binaries
-stockfish/*.exe
-stockfish/*.bin
-stockfish/*.zip
+# Stockfish is not vendored in this repo. Only stockfish/README.md is tracked.
+# You may put a local engine binary here; it will not be committed.
+stockfish/*
+!stockfish/README.md
 
 # Python
 __pycache__/

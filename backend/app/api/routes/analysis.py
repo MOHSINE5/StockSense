@@ -17,6 +17,11 @@ _analysis_store: dict[str, AnalysisResult] = {}
 @router.post("/analyze", response_model=AnalyzeResponse)
 def analyze_pgn(payload: AnalyzeRequest) -> AnalyzeResponse:
     try:
+        if not settings.stockfish_path:
+            raise HTTPException(
+                status_code=503,
+                detail="STOCKFISH_PATH is not set. Install Stockfish and set STOCKFISH_PATH to the engine binary.",
+            )
         game = PgnParserService.parse_game(payload.pgn)
         analysis_id = str(uuid4())
 
@@ -30,9 +35,14 @@ def analyze_pgn(payload: AnalyzeRequest) -> AnalyzeResponse:
         _analysis_store[analysis_id] = result
         return AnalyzeResponse(analysis_id=analysis_id)
     except FileNotFoundError:
-        raise HTTPException(status_code=500, detail="Stockfish binary not found")
+        raise HTTPException(
+            status_code=500,
+            detail="Stockfish binary not found at STOCKFISH_PATH. Check the path and file permissions.",
+        )
     except ValueError as exc:
         raise HTTPException(status_code=400, detail=str(exc))
+    except HTTPException:
+        raise
     except Exception as exc:
         raise HTTPException(status_code=500, detail=f"Analysis failed: {exc}")
 
