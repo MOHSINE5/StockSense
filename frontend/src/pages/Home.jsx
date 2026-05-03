@@ -2,11 +2,33 @@ import { Link } from "react-router-dom";
 
 function Home() {
   return (
-    <main style={{ padding: "2rem", fontFamily: "Arial, sans-serif" }}>
-      <h1>Chess Game Analyzer</h1>
-      <p>Upload a PGN and review move-by-move engine evaluations.</p>
-      <Link to="/upload">Start analysis</Link>
-    </main>
+    <div>
+      <h1 className="page-title">Chess analysis, step by step</h1>
+      <p className="page-lead">
+        Load any game as PGN and see how each move changed the evaluation. Built for clarity — no chess account required.
+      </p>
+
+      <ol className="hero-steps">
+        <li className="hero-step">
+          <strong>Step 1</strong>
+          Paste your game or open a <code>.pgn</code> file.
+        </li>
+        <li className="hero-step">
+          <strong>Step 2</strong>
+          Stockfish reviews every move on your machine.
+        </li>
+        <li className="hero-step">
+          <strong>Step 3</strong>
+          Click moves in the list to replay the board.
+        </li>
+      </ol>
+
+      <div className="hero-cta">
+        <Link to="/upload" className="btn btn--primary">
+          Analyze a game
+        </Link>
+      </div>
+    </div>
   );
 }
 

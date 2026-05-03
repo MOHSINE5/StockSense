@@ -50,8 +50,10 @@ Edit `backend/.env` and set `STOCKFISH_PATH` to your installed binary, for examp
 - Windows: `STOCKFISH_PATH=C:\Stockfish\stockfish.exe`
 
 ```bash
-uvicorn app.main:app --reload
+python -m uvicorn app.main:app --reload
 ```
+
+On Windows, if `uvicorn` alone is not found after `pip install`, use the command above (or add your Python `Scripts` folder to `PATH`).
 
 ### Frontend
 

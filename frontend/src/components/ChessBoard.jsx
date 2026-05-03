@@ -1,9 +1,19 @@
-function ChessBoard({ currentMove }) {
+import { Chessboard } from "react-chessboard";
+
+function ChessBoard({ fen, boardWidth }) {
   return (
-    <section>
-      <h3>Board</h3>
-      <p>Board playback placeholder. Current move: {currentMove || "-"}</p>
-    </section>
+    <div className="analysis-board-wrap" aria-label="Chess position">
+      <Chessboard
+        position={fen}
+        boardWidth={boardWidth}
+        arePiecesDraggable={false}
+        boardOrientation="white"
+        customBoardStyle={{
+          borderRadius: 8,
+          boxShadow: "0 4px 20px rgba(0,0,0,0.12)",
+        }}
+      />
+    </div>
   );
 }
 
